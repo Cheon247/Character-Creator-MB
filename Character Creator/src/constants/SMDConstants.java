@@ -1,6 +1,6 @@
 package constants;
 
-public class Constants {
+public class SMDConstants {
 	// SMD Headers
 	public static final String SMD_VERSION_HEADER = "version";
 	public static final String SMD_NODES_HEADER = "nodes";

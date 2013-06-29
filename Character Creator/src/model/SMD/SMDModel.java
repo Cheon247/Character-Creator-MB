@@ -3,7 +3,6 @@ package model.SMD;
 import model.Bone;
 import model.Triangle;
 import java.util.ArrayList;
-import model.Vertex;
 
 public class SMDModel {
 
@@ -16,6 +15,14 @@ public class SMDModel {
     public SMDModel() {
         bones = new ArrayList<>();
         triangles = new ArrayList<>();
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public void addTriangle(Triangle t) {

@@ -3,16 +3,15 @@ package model;
 import java.util.ArrayList;
 
 public class Triangle {
-	private String texture;
-	private int id;
-	private ArrayList <Vertex> children;
-	private ArrayList <Triangle> neighbours;
 
-	public Triangle (int id){
-		this.id = id;
-		this.children = new ArrayList<>();
-                this.neighbours  = new ArrayList<>();
-	}
+    private String texture;
+    private int id;
+    private ArrayList<Vertex> vertices;
+
+    public Triangle(int id) {
+        this.id = id;
+        this.vertices = new ArrayList<>();
+    }
 
     public String getTexture() {
         return texture;
@@ -31,70 +30,36 @@ public class Triangle {
     }
 
     public ArrayList<Vertex> getChildren() {
-        return children;
+        return vertices;
     }
 
     public void setChildren(ArrayList<Vertex> children) {
-        this.children = children;
-    }
-
-    public ArrayList<Triangle> getNeighbours() {
-        return neighbours;
-    }
-
-    public void setNeighbours(ArrayList<Triangle> neighbours) {
-        this.neighbours = neighbours;
+        this.vertices = children;
     }
 
     public boolean containsVertex(Vertex v) {
-        return children.contains(v);
+        return vertices.contains(v);
     }
 
     public Vertex getVertex(int index) {
-        return children.get(index);
+        return vertices.get(index);
     }
 
     public boolean addVertex(Vertex e) {
-        return children.add(e);
-    }
-    
-    public int childrenSize(){
-        return this.children.size();
+        return vertices.add(e);
     }
 
-    public int neighbourSize() {
-        return neighbours.size();
+    public int childrenSize() {
+        return this.vertices.size();
     }
 
-    public boolean containsNeighbour(Triangle t) {
-        return neighbours.contains(t);
+    @Override
+    public String toString() {
+        String triangleString = "";
+        triangleString += this.texture;
+        for (Vertex v : vertices) {
+            triangleString += "\n" + v.toString();
+        }
+        return triangleString;
     }
-
-    public Triangle getNeighbour(int index) {
-        return neighbours.get(index);
-    }
-
-    public Triangle setNeighbour(int index, Triangle element) {
-        return neighbours.set(index, element);
-    }
-
-    public boolean addNeighbour(Triangle e) {
-        return neighbours.add(e);
-    }
-    
-    public boolean isParentOf(ArrayList<Integer> ids){
-    boolean isChild = false;
-    
-      isChild = true;
-    
-    return isChild;
-    }
-    
-        
-        
-        
-        
-        
 }
-	
-	

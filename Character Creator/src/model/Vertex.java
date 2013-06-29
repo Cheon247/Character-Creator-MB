@@ -1,6 +1,7 @@
 package model;
 
 import java.util.ArrayList;
+import model.SMD.SMDNumberFormat;
 
 public class Vertex {
 
@@ -18,6 +19,7 @@ public class Vertex {
     private ArrayList<Vertex> neighbours; 		// if vertexes share a triangle they are neighbours
 
     public Vertex() {
+
         triangleIDs = new ArrayList<>();
         neighbours = new ArrayList<>();
     }
@@ -199,5 +201,21 @@ public class Vertex {
 
     public void setNeighbours(ArrayList<Vertex> neighbours) {
         this.neighbours = neighbours;
+    }
+
+    @Override
+    public String toString() {
+        String vertexString = "";
+        vertexString += this.boneID + " ";
+        vertexString += SMDNumberFormat.format(this.posX) + " ";
+        vertexString += SMDNumberFormat.format(this.posY) + " ";
+        vertexString += SMDNumberFormat.format(this.posZ) + " ";
+        vertexString += SMDNumberFormat.format(this.normX) + " ";
+        vertexString += SMDNumberFormat.format(this.normY) + " ";
+        vertexString += SMDNumberFormat.format(this.normZ) + " ";
+        vertexString += SMDNumberFormat.format(this.normUV) + " ";
+        vertexString += SMDNumberFormat.format(this.normWeight) + " ";
+
+        return vertexString;
     }
 }

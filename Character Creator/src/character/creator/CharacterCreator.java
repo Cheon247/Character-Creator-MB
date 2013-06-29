@@ -4,8 +4,6 @@
  */
 package character.creator;
 
-import importer.ModelImporter;
-
 /**
  *
  * @author Chingo

@@ -14,11 +14,14 @@ import java.text.NumberFormat;
  */
 public class SMDNumberFormat {
 // source: http://stackoverflow.com/questions/16309189/java-use-decimalformat-to-format-doubles-and-integers-but-keep-integers-without
+
     public static String format(Number n) {
         NumberFormat format = DecimalFormat.getInstance();
         format.setRoundingMode(RoundingMode.FLOOR);
-        format.setMinimumFractionDigits(7);
-        format.setMaximumFractionDigits(7);
-        return format.format(n);
+        format.setMinimumFractionDigits(6);
+        format.setMaximumFractionDigits(6);
+        String s = format.format(n);
+
+        return s.replaceAll(",", ".");
     }
 }

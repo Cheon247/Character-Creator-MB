@@ -2,10 +2,10 @@ package character.creator;
 
 public class Settings {
 
-    private boolean debugMode = true;
-    private boolean triangleDebug = true;
+    private boolean debugMode = false;
+    private boolean triangleDebug = false;
     private static Settings instance;
-    private boolean textureToLowerCase = true;
+    private boolean textureToLowerCase = false;
 
     public boolean triangleDebug() {
         return this.triangleDebug;

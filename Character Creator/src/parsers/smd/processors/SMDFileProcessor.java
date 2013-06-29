@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package parsers.smd.runnables;
+package parsers.smd.processors;
 
 import com.google.common.base.Charsets;
 import java.io.File;
@@ -13,16 +13,26 @@ import java.nio.file.Paths;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import model.Bone;
 import model.SMD.SMDModel;
 
 /**
  *
  * @author Chingo
  */
-public class SMDFileProcessor {
+public class SMDFileProcessor implements Runnable {
 
-    public SMDModel processFile(File file) {
-        SMDModel model = new SMDModel();
+    private File file;
+    private SMDModel model;
+
+    public SMDFileProcessor(File f) {
+        this.file = f;
+
+    }
+
+    @Override
+    public void run() {
+
         List<String> data = null;
         assert file != null;
         Path filepath = Paths.get(file.getAbsolutePath());
@@ -31,8 +41,8 @@ public class SMDFileProcessor {
         } catch (IOException ex) {
             Logger.getLogger(SMDFileProcessor.class.getName()).log(Level.SEVERE, null, ex);
         }
-        BoneProcessor boneProcessor = new BoneProcessor(data, model);
-        TriangleProcessor triangleProcessor = new TriangleProcessor(data, model);
+        BoneProcessor boneProcessor = new BoneProcessor(data);
+        TriangleProcessor triangleProcessor = new TriangleProcessor(data);
         Thread boneThread = new Thread(boneProcessor);
         Thread triangleThread = new Thread(triangleProcessor);
 
@@ -45,6 +55,18 @@ public class SMDFileProcessor {
         } catch (InterruptedException ex) {
             Logger.getLogger(SMDFileProcessor.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return model;
+        model = new SMDModel();
+
+
+        model.setBones(boneProcessor.getResult());
+        model.setTriangles(triangleProcessor.getResult());
+
+
+
+
+    }
+
+    public SMDModel getProcessedModel() {
+        return this.model;
     }
 }

@@ -1,32 +1,35 @@
-package threads.DataProcesses;
+package parsers.smd.processors;
 
 import java.util.ArrayList;
+import java.util.TreeMap;
+import model.Bone;
 
 import model.Triangle;
 import model.Vertex;
 
-public class DevideVTRunnable implements Runnable {
+public class BoneBinderProcessor implements Runnable {
 
     private int MAX_THREADS = 250 / Runtime.getRuntime().availableProcessors();
     private ArrayList<Triangle> triangles;
-    private ArrayList<Vertex> vertices;
-    private ArrayList<Triangle> result;
     private int leafThreadIndicator = 0;
+    private Bone bone;
+    private TreeMap boneTree;
 
-    public DevideVTRunnable(ArrayList<Triangle> triangles, ArrayList<Vertex> vertices) {
+    public BoneBinderProcessor(ArrayList<Triangle> triangles, Bone b) {
+        this.bone = b;
         this.triangles = triangles;
-        this.vertices = vertices;
-        result = new ArrayList<>();
+        boneTree = new TreeMap();
     }
 
+    @Override
     public void run() {
         if (Thread.activeCount() < MAX_THREADS) {
 
             ArrayList<Triangle> ls1 = new ArrayList<>(triangles.subList(0, triangles.size() / 2));
             ArrayList<Triangle> ls2 = new ArrayList<>(triangles.subList((triangles.size() / 2), triangles.size()));
 
-            DevideVTRunnable r1 = new DevideVTRunnable(ls1, vertices);
-            DevideVTRunnable r2 = new DevideVTRunnable(ls2, vertices);
+            BoneBinderProcessor r1 = new BoneBinderProcessor(ls1, bone);
+            BoneBinderProcessor r2 = new BoneBinderProcessor(ls2, bone);
 
             Thread th1 = new Thread(r1);
             Thread th2 = new Thread(r2);
@@ -40,13 +43,16 @@ public class DevideVTRunnable implements Runnable {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            result.addAll(r1.getProcessedData());
-            result.addAll(r2.getProcessedData());
+
+
+            boneTree.putAll(r1.getResult());
+            boneTree.putAll(r2.getResult());
+
             this.leafThreadIndicator += r1.getThreadIndicator() + r2.getThreadIndicator();
 
         } else {
             leafThreadIndicator = 1;
-            result = setTriangles(vertices);
+            setVerticesToBones(this.triangles, bone);
         }
     }
 
@@ -54,18 +60,17 @@ public class DevideVTRunnable implements Runnable {
         return leafThreadIndicator;
     }
 
-    private ArrayList<Triangle> setTriangles(ArrayList<Vertex> vertices) {
-//		for(Triangle t : triangles){
-//			for (Vertex v : vertices){
-//				if(t.isParentOf(v.getTriangleIDs())){
-//					t.addVertex(v);
-//				}
-//			}
-//		}
-        return this.triangles;
+    private void setVerticesToBones(ArrayList<Triangle> triangles, Bone bone) {
+        for (Triangle t : triangles) {
+            for (Vertex v : t.getVertices()) {
+                if (v.getBoneID() == bone.getBoneID()) {
+                    boneTree.put(v.getId(), v);
+                }
+            }
+        }
     }
 
-    public ArrayList<Triangle> getProcessedData() {
-        return result;
+    public TreeMap getResult() {
+        return this.boneTree;
     }
 }

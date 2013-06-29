@@ -29,7 +29,7 @@ public class Triangle {
         this.id = id;
     }
 
-    public ArrayList<Vertex> getChildren() {
+    public ArrayList<Vertex> getVertices() {
         return vertices;
     }
 
@@ -47,6 +47,11 @@ public class Triangle {
 
     public boolean addVertex(Vertex e) {
         return vertices.add(e);
+    }
+
+    public ArrayList<Vertex> removeVertex(Vertex v) {
+        this.vertices.remove(v);
+        return this.vertices;
     }
 
     public int childrenSize() {

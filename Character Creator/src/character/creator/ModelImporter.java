@@ -10,7 +10,9 @@ import parsers.smd.SMDParser;
 import constants.SMDConstants;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import model.Bone;
 import model.SMD.SMDModel;
+import parsers.smd.SMDBoneWriter;
 import parsers.smd.SMDWriter;
 
 public class ModelImporter {
@@ -61,17 +63,26 @@ public class ModelImporter {
     }
 
     private void parseFiletoSMD(File file) {
-        System.out.println("REMINDER: remove auto export in " + this.getClass().getName());
-
         SMDParser smdParser = new SMDParser();
         SMDModel model = null;
 
         long startTime = System.nanoTime() / 1000000;
-        model = smdParser.parseToSMDData(file);
+        try {
+            model = smdParser.parseToSMDData(file);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(ModelImporter.class.getName()).log(Level.SEVERE, null, ex);
+        }
         long endTime = System.nanoTime() / 1000000;
-        System.out.println("Parsed in: " + (endTime - startTime) + "ms");
+        System.out.println("SMD ~ Parsed in: " + (endTime - startTime) + "ms, Triangles: " + model.getTriangles().size());
 
-        parseSMDtoFile(model);
+
+        writeBoneToFile(model, model.getBones().get(9));
+
+    }
+
+    private void writeBoneToFile(SMDModel model, Bone b) {
+        SMDBoneWriter smdBonewriter = new SMDBoneWriter();
+        smdBonewriter.writeModel(model, b);
     }
 //
 
@@ -82,6 +93,6 @@ public class ModelImporter {
         long startTime = System.nanoTime() / 1000000;
         smdWriter.writeModel(model);
         long endTime = System.nanoTime() / 1000000;
-        System.out.println("Written in: " + (endTime - startTime) + "ms");
+        System.out.println("SMD ~ Written in: " + (endTime - startTime) + "ms");
     }
 }

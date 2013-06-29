@@ -104,4 +104,32 @@ public class SMDModel {
             }
         }
     }
+
+    public Bone getBoneByID(int boneID) {
+        Bone bone = null;
+        for (Bone b : bones) {
+            if (b.getBoneID() == boneID) {
+                bone = b;
+            }
+        }
+        return bone;
+    }
+
+    public Bone getBoneByName(String boneName) {
+        Bone bone = null;
+        for (Bone b : bones) {
+            if (b.getBoneName().equals(boneName)) {
+                return b;
+            }
+        }
+        return bone;
+    }
+
+    public void setBones(ArrayList<Bone> bones) {
+        this.bones = bones;
+    }
+
+    public void setTriangles(ArrayList<Triangle> triangles) {
+        this.triangles = triangles;
+    }
 }

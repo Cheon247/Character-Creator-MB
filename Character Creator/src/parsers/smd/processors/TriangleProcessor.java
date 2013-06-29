@@ -1,26 +1,19 @@
-package parsers.smd.runnables;
+package parsers.smd.processors;
 
-import character.creator.Settings;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import model.SMD.SMDModel;
 import model.Triangle;
 import model.Vertex;
 
 public class TriangleProcessor implements Runnable {
 
-    private SMDModel model;
     private List<String> triangleData;
+    private ArrayList<Triangle> result;
 
-    public TriangleProcessor(List<String> data, SMDModel model) {
-        this.model = model;
+    public TriangleProcessor(List<String> data) {
         this.triangleData = new ArrayList<>(data);
         this.triangleData = this.triangleData.subList(this.triangleData.indexOf("triangles") + 1, this.triangleData.size() - 1);
+        result = new ArrayList<>();
     }
 
     @Override
@@ -58,26 +51,13 @@ public class TriangleProcessor implements Runnable {
                     t.addVertex(v);
                     vertexIndex++;
                 }
-                model.addTriangle(t);
+                result.add(t);
             }
         }
-        if (Settings.getInstance().triangleDebug()) {
-            File logFolder = new File("log");
-            logFolder.mkdir();
-            File logTriangles = new File("log/trianglesVertices.txt");
 
+    }
 
-            PrintWriter triangleWriter = null;
-            try {
-                triangleWriter = new PrintWriter(logTriangles);
-            } catch (FileNotFoundException ex) {
-                Logger.getLogger(TriangleProcessor.class.getName()).log(Level.SEVERE, null, ex);
-            }
-
-            for (Triangle triangle : model.getTriangles()) {
-                triangleWriter.println(triangle.toString());
-            }
-            triangleWriter.close();
-        }
+    public ArrayList<Triangle> getResult() {
+        return this.result;
     }
 }

@@ -1,4 +1,4 @@
-package parsers.smd.runnables;
+package parsers.smd.processors;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -13,20 +13,20 @@ import model.SMD.SMDModel;
  */
 public class BoneProcessor implements Runnable {
 
-    private SMDModel model;
     private File file;
     private List<String> boneList;
     private List<String> bonePositionsList;
+    private ArrayList<Bone> result;
 
-    public BoneProcessor(List<String> data, SMDModel model) {
+    public BoneProcessor(List<String> data) {
         this.boneList = new ArrayList<>(data);
         this.bonePositionsList = new ArrayList<>(data);
 
-        this.model = model;
         this.boneList = this.boneList.subList(this.boneList.indexOf("nodes") + 1, this.boneList.indexOf("end"));
 
         this.bonePositionsList.remove(this.bonePositionsList.indexOf("end"));
         this.bonePositionsList = this.bonePositionsList.subList(this.bonePositionsList.indexOf("skeleton") + 2, this.bonePositionsList.indexOf("end"));
+        result = new ArrayList<>();
     }
 
     @Override
@@ -43,7 +43,7 @@ public class BoneProcessor implements Runnable {
             bone.setBoneName(b[1]);
             bone.setParentBoneID(Integer.parseInt(b[2]));
 
-            model.addBone(bone);
+            result.add(bone);
         }
         getBonePositions();
     }
@@ -61,12 +61,22 @@ public class BoneProcessor implements Runnable {
             Double boneYNormpos = Double.parseDouble(b[5]);
             Double boneZNormpos = Double.parseDouble(b[6]);
 
-            model.setBoneXPositionByBoneID(boneid, boneXpos);
-            model.setBoneYPositionByBoneID(boneid, boneYpos);
-            model.setBoneZPositionByBoneID(boneid, boneZpos);
-            model.setBoneXNormPositionByBoneID(boneid, boneXNormpos);
-            model.setBoneYNormPositionByBoneID(boneid, boneYNormpos);
-            model.setBoneZNormPositionByBoneID(boneid, boneZNormpos);
+            for (Bone bone : result) {
+                if (bone.getBoneID() == boneid) {
+                    bone.setPosX(boneXpos);
+                    bone.setPosY(boneYpos);
+                    bone.setPosZ(boneZpos);
+
+                    bone.setNormX(boneXNormpos);
+                    bone.setNormY(boneYNormpos);
+                    bone.setNormZ(boneZNormpos);
+                }
+            }
+
         }
+    }
+
+    public ArrayList<Bone> getResult() {
+        return this.result;
     }
 }

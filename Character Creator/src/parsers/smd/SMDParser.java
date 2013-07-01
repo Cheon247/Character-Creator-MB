@@ -3,17 +3,14 @@ package parsers.smd;
 import java.io.File;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import model.Bone;
-import model.SMD.SMDModel;
-import parsers.smd.processors.BoneBinderProcessor;
-import parsers.smd.processors.SMDFileProcessor;
+import model.basic.Bone;
+import model.smd.SMDModel;
 
 public class SMDParser {
 
     public SMDModel parseToSMDData(File f) throws InterruptedException {
         SMDModel model;
         SMDFileProcessor processor = new SMDFileProcessor(f);
-
         Thread processorThread = new Thread(processor);
         processorThread.start();
         processorThread.join();

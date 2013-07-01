@@ -1,4 +1,4 @@
-package model;
+package model.basic;
 
 import java.util.ArrayList;
 
@@ -33,7 +33,7 @@ public class Triangle {
         return vertices;
     }
 
-    public void setChildren(ArrayList<Vertex> children) {
+    public void setVertices(ArrayList<Vertex> children) {
         this.vertices = children;
     }
 
@@ -54,7 +54,7 @@ public class Triangle {
         return this.vertices;
     }
 
-    public int childrenSize() {
+    public int verticesSize() {
         return this.vertices.size();
     }
 

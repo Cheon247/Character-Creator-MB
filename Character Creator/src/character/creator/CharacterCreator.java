@@ -4,17 +4,34 @@
  */
 package character.creator;
 
+import database.ModelDataResource;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import model.basic.AnimModel;
+import model.basic.Model;
+
 /**
  *
  * @author Chingo
  */
 public class CharacterCreator extends javax.swing.JFrame {
-    
+
     /**
      * Creates new form CharacterCreator
      */
     public CharacterCreator() {
+        initDB();
         initComponents();
+        this.setLocationRelativeTo(null);
+    }
+
+    private void initDB() {
+        try {
+            ModelDataResource mdr = ModelDataResource.getInstance();
+        } catch (Exception ex) {
+            Logger.getLogger(CharacterCreator.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }
 
     /**
@@ -26,6 +43,28 @@ public class CharacterCreator extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        importWindow = new javax.swing.JFrame();
+        jPanel3 = new javax.swing.JPanel();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jPanel5 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        importWindowfileNameTextField = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        importWindowVerticesTextField = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        importWindowFileTypeTextField = new javax.swing.JTextField();
+        importWindowTrianglesTextField = new javax.swing.JTextField();
+        importWindowBoneTextField = new javax.swing.JTextField();
+        SkeletonTextField = new javax.swing.JTextField();
+        jMenuBar3 = new javax.swing.JMenuBar();
+        jMenu3 = new javax.swing.JMenu();
+        jMenu4 = new javax.swing.JMenu();
         jPanel2 = new javax.swing.JPanel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         head = new javax.swing.JPanel();
@@ -36,6 +75,241 @@ public class CharacterCreator extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
+
+        importWindow.setMaximumSize(new java.awt.Dimension(600, 330));
+        importWindow.setMinimumSize(new java.awt.Dimension(600, 330));
+        importWindow.setPreferredSize(new java.awt.Dimension(600, 330));
+        importWindow.setResizable(false);
+        importWindow.addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                importWindowWindowClosing(evt);
+            }
+        });
+
+        jPanel3.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        jButton1.setText("Import Model");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jButton2.setText("Save Model");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
+                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jButton1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton2)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jPanel5.setFocusable(false);
+
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("File Info");
+        jLabel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("File Name");
+        jLabel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        importWindowfileNameTextField.setEditable(false);
+        importWindowfileNameTextField.setBackground(new java.awt.Color(250, 250, 250));
+        importWindowfileNameTextField.setText("<none>");
+        importWindowfileNameTextField.setToolTipText("");
+        importWindowfileNameTextField.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+        importWindowfileNameTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                importWindowfileNameTextFieldActionPerformed(evt);
+            }
+        });
+
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel3.setText("File Type");
+        jLabel3.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        importWindowVerticesTextField.setEditable(false);
+        importWindowVerticesTextField.setBackground(new java.awt.Color(250, 250, 250));
+        importWindowVerticesTextField.setText("<none>");
+        importWindowVerticesTextField.setToolTipText("");
+        importWindowVerticesTextField.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+        importWindowVerticesTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                importWindowVerticesTextFieldActionPerformed(evt);
+            }
+        });
+
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel4.setText("Model Info");
+        jLabel4.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel5.setText("Vertices");
+        jLabel5.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel6.setText("Triangles");
+        jLabel6.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel7.setText("Bones");
+        jLabel7.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel8.setText("Skeleton");
+        jLabel8.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        importWindowFileTypeTextField.setEditable(false);
+        importWindowFileTypeTextField.setBackground(new java.awt.Color(250, 250, 250));
+        importWindowFileTypeTextField.setText("<none>");
+        importWindowFileTypeTextField.setToolTipText("");
+        importWindowFileTypeTextField.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+        importWindowFileTypeTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                importWindowFileTypeTextFieldActionPerformed(evt);
+            }
+        });
+
+        importWindowTrianglesTextField.setEditable(false);
+        importWindowTrianglesTextField.setBackground(new java.awt.Color(250, 250, 250));
+        importWindowTrianglesTextField.setText("<none>");
+        importWindowTrianglesTextField.setToolTipText("");
+        importWindowTrianglesTextField.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+        importWindowTrianglesTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                importWindowTrianglesTextFieldActionPerformed(evt);
+            }
+        });
+
+        importWindowBoneTextField.setEditable(false);
+        importWindowBoneTextField.setBackground(new java.awt.Color(250, 250, 250));
+        importWindowBoneTextField.setText("<none>");
+        importWindowBoneTextField.setToolTipText("");
+        importWindowBoneTextField.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+        importWindowBoneTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                importWindowBoneTextFieldActionPerformed(evt);
+            }
+        });
+
+        SkeletonTextField.setEditable(false);
+        SkeletonTextField.setBackground(new java.awt.Color(250, 250, 250));
+        SkeletonTextField.setText("<none>");
+        SkeletonTextField.setToolTipText("");
+        SkeletonTextField.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+        SkeletonTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SkeletonTextFieldActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(importWindowfileNameTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 339, Short.MAX_VALUE))
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(importWindowVerticesTextField))
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(importWindowTrianglesTextField))
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(importWindowFileTypeTextField))
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(importWindowBoneTextField))
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(SkeletonTextField)))
+                .addContainerGap())
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(importWindowfileNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(importWindowFileTypeTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(importWindowVerticesTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(importWindowTrianglesTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(importWindowBoneTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(SkeletonTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 96, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout importWindowLayout = new javax.swing.GroupLayout(importWindow.getContentPane());
+        importWindow.getContentPane().setLayout(importWindowLayout);
+        importWindowLayout.setHorizontalGroup(
+            importWindowLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(importWindowLayout.createSequentialGroup()
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        importWindowLayout.setVerticalGroup(
+            importWindowLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        jMenu3.setText("File");
+        jMenuBar3.add(jMenu3);
+
+        jMenu4.setText("Edit");
+        jMenuBar3.add(jMenu4);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -57,11 +331,11 @@ public class CharacterCreator extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 237, Short.MAX_VALUE)
+            .addGap(0, 228, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 599, Short.MAX_VALUE)
+            .addGap(0, 551, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout headLayout = new javax.swing.GroupLayout(head);
@@ -81,11 +355,11 @@ public class CharacterCreator extends javax.swing.JFrame {
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 237, Short.MAX_VALUE)
+            .addGap(0, 228, Short.MAX_VALUE)
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 599, Short.MAX_VALUE)
+            .addGap(0, 551, Short.MAX_VALUE)
         );
 
         jTabbedPane1.addTab("body", jPanel4);
@@ -125,8 +399,70 @@ public class CharacterCreator extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        ModelImporter.getInstance().loadFile();
+//        ModelImporter.getInstance().loadFile();
+        importWindow.setEnabled(true);
+        importWindow.setVisible(true);
+        importWindow.setLocationRelativeTo(null); // places window in middle of screen
+        this.setEnabled(false);
+
+
     }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void importWindowWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_importWindowWindowClosing
+        importWindow.setEnabled(false);
+        importWindow.setVisible(false);
+        this.setEnabled(true);
+    }//GEN-LAST:event_importWindowWindowClosing
+
+    private void importWindowfileNameTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_importWindowfileNameTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_importWindowfileNameTextFieldActionPerformed
+
+    private void importWindowVerticesTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_importWindowVerticesTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_importWindowVerticesTextFieldActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+
+        Model model = ModelImporter.getInstance().loadFile();
+        long start = System.nanoTime() / 1000000;
+        importWindowFileTypeTextField.setText(model.getType());
+        importWindowfileNameTextField.setText(model.getName());
+        importWindowTrianglesTextField.setText(model.getTriangles().size() / 3 + "");
+
+        if (model instanceof AnimModel) {
+            AnimModel aModel = (AnimModel) model;
+            importWindowVerticesTextField.setText(aModel.getNumberOfVertices() + "");
+            importWindowBoneTextField.setText(aModel.getBones().size() + "");
+        } else {
+            throw new UnsupportedOperationException();
+            // no worries if Unsupported happends :)
+        }
+
+        long end = System.nanoTime() / 1000000;
+        System.out.println("Time was: " + (end - start) + "ms");
+
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void importWindowFileTypeTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_importWindowFileTypeTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_importWindowFileTypeTextFieldActionPerformed
+
+    private void importWindowTrianglesTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_importWindowTrianglesTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_importWindowTrianglesTextFieldActionPerformed
+
+    private void importWindowBoneTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_importWindowBoneTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_importWindowBoneTextFieldActionPerformed
+
+    private void SkeletonTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SkeletonTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_SkeletonTextFieldActionPerformed
 
     /**
      * @param args the command line arguments
@@ -159,17 +495,40 @@ public class CharacterCreator extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new CharacterCreator().setVisible(true);
+
             }
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField SkeletonTextField;
     private javax.swing.JPanel head;
+    private javax.swing.JFrame importWindow;
+    private javax.swing.JTextField importWindowBoneTextField;
+    private javax.swing.JTextField importWindowFileTypeTextField;
+    private javax.swing.JTextField importWindowTrianglesTextField;
+    private javax.swing.JTextField importWindowVerticesTextField;
+    private javax.swing.JTextField importWindowfileNameTextField;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu3;
+    private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuBar jMenuBar3;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTabbedPane jTabbedPane2;
     private javax.swing.JTabbedPane jTabbedPane3;

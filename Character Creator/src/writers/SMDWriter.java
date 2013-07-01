@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package parsers.smd;
+package writers;
 
 import constants.SMDConstants;
 import java.io.File;
@@ -10,10 +10,10 @@ import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import model.Bone;
-import model.SMD.SMDModel;
-import model.SMD.SMDNumberFormat;
-import model.Triangle;
+import model.basic.Bone;
+import model.smd.SMDModel;
+import model.smd.SMDNumberFormat;
+import model.basic.Triangle;
 
 /**
  *

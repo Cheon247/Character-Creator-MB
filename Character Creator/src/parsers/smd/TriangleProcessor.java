@@ -1,9 +1,9 @@
-package parsers.smd.processors;
+package parsers.smd;
 
 import java.util.ArrayList;
 import java.util.List;
-import model.Triangle;
-import model.Vertex;
+import model.basic.Triangle;
+import model.basic.Vertex;
 
 public class TriangleProcessor implements Runnable {
 

@@ -1,7 +1,7 @@
-package model;
+package model.basic;
 
 import java.util.ArrayList;
-import model.SMD.SMDNumberFormat;
+import model.smd.SMDNumberFormat;
 
 public class Vertex {
 
@@ -15,13 +15,8 @@ public class Vertex {
     private Double normZ;
     private Double normUV;
     private Double normWeight;
-    private ArrayList<Integer> triangleIDs; 	// one vertex could be in multiple triangles
-    private ArrayList<Vertex> neighbours; 		// if vertexes share a triangle they are neighbours
 
     public Vertex() {
-
-        triangleIDs = new ArrayList<>();
-        neighbours = new ArrayList<>();
     }
 
     public Double getNormUV() {
@@ -46,16 +41,6 @@ public class Vertex {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    private boolean isNeigbourVertex(Vertex v) {
-        boolean isNeighbourVertex = false;
-        for (Integer i : triangleIDs) {
-            if (v.getTriangleIDs().contains(i)) {
-                isNeighbourVertex = true;
-            }
-        }
-        return isNeighbourVertex;
     }
 
     public boolean isTwin(Vertex v) {
@@ -146,61 +131,13 @@ public class Vertex {
         this.normZ = normZ;
     }
 
-    /**
-     * @return the triangleIDs
-     */
-    public ArrayList<Integer> getTriangleIDs() {
-        return triangleIDs;
-    }
-
-    /**
-     * @param triangleIDs the triangleIDs to set
-     */
-    public void setTriangleIDs(ArrayList<Integer> triangleIDs) {
-        this.triangleIDs = triangleIDs;
-    }
-
-    public void addParent(int triangleID) {
-        triangleIDs.add(triangleID);
-    }
-
-    public boolean isNeighBour(Vertex v) {
-        boolean isNeighbour = false;
-        for (Integer i : v.getTriangleIDs()) {
-            for (Integer j : v.getTriangleIDs()) {
-                if (i == j) {
-                    isNeighbour = true;
-                    break;
-                }
-            }
+    public boolean isSameAs(Vertex v) {
+        boolean isSame = false;
+        if (this.getBoneID() == v.getBoneID() && this.getPosX() == v.getPosX()
+                && this.getPosY() == v.getPosY() && this.getPosZ() == this.getPosZ()) {
+            isSame = true;
         }
-        return isNeighbour;
-    }
-
-    /**
-     * @param arg0
-     *
-     * @see java.util.ArrayList#add(int, java.lang.Object)
-     */
-    public void addNeighBour(Vertex v) {
-        neighbours.add(v);
-    }
-
-    /**
-     * @param arg0
-     * @return
-     * @see java.util.ArrayList#contains(java.lang.Object)
-     */
-    public boolean contains(Vertex v) {
-        return neighbours.contains(v);
-    }
-
-    public ArrayList<Vertex> getNeighbours() {
-        return neighbours;
-    }
-
-    public void setNeighbours(ArrayList<Vertex> neighbours) {
-        this.neighbours = neighbours;
+        return isSame;
     }
 
     @Override

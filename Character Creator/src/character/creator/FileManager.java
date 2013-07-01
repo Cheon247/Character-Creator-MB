@@ -28,4 +28,16 @@ public class FileManager {
         }
         return extension;
     }
+
+    public String getFileName(File f) {
+        String fileName = f.getName();
+        String name = "";
+
+        int i = fileName.lastIndexOf('.');
+
+        if (i > 0) {
+            name = fileName.subSequence(0, i) + "";
+        }
+        return name;
+    }
 }

@@ -2,8 +2,9 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package parsers.smd.processors;
+package parsers.smd;
 
+import character.creator.FileManager;
 import com.google.common.base.Charsets;
 import java.io.File;
 import java.io.IOException;
@@ -13,8 +14,8 @@ import java.nio.file.Paths;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import model.Bone;
-import model.SMD.SMDModel;
+import model.basic.Bone;
+import model.smd.SMDModel;
 
 /**
  *
@@ -55,12 +56,16 @@ public class SMDFileProcessor implements Runnable {
         } catch (InterruptedException ex) {
             Logger.getLogger(SMDFileProcessor.class.getName()).log(Level.SEVERE, null, ex);
         }
-        model = new SMDModel();
+
+        System.out.println("Need unique id from DB here in " + this.getClass().getName());
+
+        this.model = new SMDModel(FileManager.getInstance().getFileName(file), // Model Name
+                FileManager.getInstance().getFileExtension(file), // File Type
+                0);                                                       // unique Model id
 
 
         model.setBones(boneProcessor.getResult());
         model.setTriangles(triangleProcessor.getResult());
-
 
 
 

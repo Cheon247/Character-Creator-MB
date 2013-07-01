@@ -1,11 +1,10 @@
-package parsers.smd.processors;
+package parsers.smd;
 
 import java.util.ArrayList;
 import java.util.TreeMap;
-import model.Bone;
-
-import model.Triangle;
-import model.Vertex;
+import model.basic.Bone;
+import model.basic.Triangle;
+import model.basic.Vertex;
 
 public class BoneBinderProcessor implements Runnable {
 

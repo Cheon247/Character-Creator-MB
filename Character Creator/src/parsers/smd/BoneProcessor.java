@@ -1,10 +1,10 @@
-package parsers.smd.processors;
+package parsers.smd;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
-import model.Bone;
-import model.SMD.SMDModel;
+import model.basic.Bone;
+import model.smd.SMDModel;
 
 /**
  * Should be Faster than old method

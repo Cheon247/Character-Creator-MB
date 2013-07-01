@@ -7,35 +7,42 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 
 import parsers.smd.SMDParser;
 
-import constants.SMDConstants;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import model.Bone;
-import model.SMD.SMDModel;
-import parsers.smd.SMDBoneWriter;
-import parsers.smd.SMDWriter;
+import model.basic.Bone;
+import model.basic.Model;
+import model.smd.SMDModel;
+import writers.SMDBoneWriter;
+import writers.SMDWriter;
 
 public class ModelImporter {
 
     private JFileChooser chooser;
     private static ModelImporter instance;
+    private final String FILE_NOT_FOUND = "file not found...";
 
-    public void loadFile() {
+    public Model loadFile() {
         File file = setSelectedTextFile();
+        Model model = null;
         if (file == null) {
-            System.out.println(SMDConstants.FILE_NOT_FOUND);
+            System.out.println(FILE_NOT_FOUND);
         } else {
             String fileExtension = FileManager.getInstance().getFileExtension(file);
+
             switch (fileExtension) {
                 case "smd":
-                    parseFiletoSMD(file);
+                    model = parseFiletoSMD(file);
+
                     break;
                 // ROOM FOR OTHER EXTENSIONS TO SUPPORT
                 default:
                     System.err.println("File not supported");
                     break; // Shouldnt happen
             }
+
+            return model;
         }
+        return null;
     }
 
     public static ModelImporter getInstance() {
@@ -62,7 +69,7 @@ public class ModelImporter {
         } while (true);
     }
 
-    private void parseFiletoSMD(File file) {
+    private SMDModel parseFiletoSMD(File file) {
         SMDParser smdParser = new SMDParser();
         SMDModel model = null;
 
@@ -73,11 +80,11 @@ public class ModelImporter {
             Logger.getLogger(ModelImporter.class.getName()).log(Level.SEVERE, null, ex);
         }
         long endTime = System.nanoTime() / 1000000;
-        System.out.println("SMD ~ Parsed in: " + (endTime - startTime) + "ms, Triangles: " + model.getTriangles().size());
+//        System.out.println("SMD ~ Parsed in: " + (endTime - startTime) + "ms, Triangles: " + model.getTriangles().size());
 
 
-        writeBoneToFile(model, model.getBones().get(9));
 
+        return model;
     }
 
     private void writeBoneToFile(SMDModel model, Bone b) {

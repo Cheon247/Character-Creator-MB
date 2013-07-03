@@ -1,8 +1,9 @@
 package model.basic;
 
+import java.io.Serializable;
 import java.util.TreeMap;
 
-public class Bone {
+public class Bone implements Serializable {
 
     private int boneID;
     private String boneName;

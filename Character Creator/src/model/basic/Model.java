@@ -7,6 +7,7 @@ package model.basic;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -15,7 +16,7 @@ import java.util.logging.Logger;
  *
  * @author Chingo
  */
-public abstract class Model {
+public abstract class Model implements Serializable {
 
     private String name;
     private String type;

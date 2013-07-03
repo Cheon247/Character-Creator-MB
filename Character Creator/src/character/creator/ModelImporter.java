@@ -91,7 +91,6 @@ public class ModelImporter {
         SMDBoneWriter smdBonewriter = new SMDBoneWriter();
         smdBonewriter.writeModel(model, b);
     }
-//
 
     private void parseSMDtoFile(SMDModel model) {
         assert model != null : "null model";

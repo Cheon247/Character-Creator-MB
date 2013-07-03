@@ -1,9 +1,10 @@
 package model.basic;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import model.smd.SMDNumberFormat;
 
-public class Vertex {
+public class Vertex implements Serializable {
 
     private int boneID = -1;
     private int id;

@@ -4,7 +4,7 @@
  */
 package character.creator;
 
-import database.ModelDataResource;
+import storage.ModelDataResource;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.basic.AnimModel;

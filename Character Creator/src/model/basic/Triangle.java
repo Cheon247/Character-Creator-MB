@@ -1,8 +1,9 @@
 package model.basic;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Triangle {
+public class Triangle implements Serializable {
 
     private String texture;
     private int id;

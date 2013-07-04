@@ -12,6 +12,7 @@ import java.util.logging.Logger;
 import model.basic.Bone;
 import model.basic.Model;
 import model.smd.SMDModel;
+import storage.ModelDataResource;
 import writers.SMDBoneWriter;
 import writers.SMDWriter;
 
@@ -24,9 +25,7 @@ public class ModelImporter {
     public Model loadFile() {
         File file = setSelectedTextFile();
         Model model = null;
-        if (file == null) {
-            System.out.println(FILE_NOT_FOUND);
-        } else {
+        if (file != null) {
             String fileExtension = FileManager.getInstance().getFileExtension(file);
 
             switch (fileExtension) {
@@ -39,10 +38,10 @@ public class ModelImporter {
                     System.err.println("File not supported");
                     break; // Shouldnt happen
             }
-
-            return model;
         }
-        return null;
+
+        // returns null when no file was chosen
+        return model;
     }
 
     public static ModelImporter getInstance() {
@@ -80,10 +79,7 @@ public class ModelImporter {
             Logger.getLogger(ModelImporter.class.getName()).log(Level.SEVERE, null, ex);
         }
         long endTime = System.nanoTime() / 1000000;
-//        System.out.println("SMD ~ Parsed in: " + (endTime - startTime) + "ms, Triangles: " + model.getTriangles().size());
-
-
-
+        System.out.println("SMD ~ Parsed in: " + (endTime - startTime) + "ms, Triangles: " + model.getTriangles().size());
         return model;
     }
 

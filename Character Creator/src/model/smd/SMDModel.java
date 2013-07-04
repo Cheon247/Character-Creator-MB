@@ -1,8 +1,5 @@
 package model.smd;
 
-import model.basic.Bone;
-import model.basic.Triangle;
-import java.util.ArrayList;
 import model.basic.AnimModel;
 
 public class SMDModel extends AnimModel {

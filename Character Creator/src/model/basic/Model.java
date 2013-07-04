@@ -18,16 +18,25 @@ import java.util.logging.Logger;
  */
 public abstract class Model implements Serializable {
 
+    private int id;
     private String name;
     private String type;
-    private int id;
+    private String genre;
     private ArrayList<Triangle> triangles;
 
     public Model(String theName, String theType, int id) {
         this.triangles = new ArrayList<>();
-        this.name = theName;
+        this.name = theName.replaceAll("\\s", "_");
         this.type = theType;
         this.id = id;
+    }
+
+    public String getGenre() {
+        return genre;
+    }
+
+    public void setGenre(String genre) {
+        this.genre = genre.replaceAll("\\s", "_");
     }
 
     public String getName() {
@@ -35,7 +44,7 @@ public abstract class Model implements Serializable {
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.name = name.replaceAll("\\s", "_");
     }
 
     public String getType() {
